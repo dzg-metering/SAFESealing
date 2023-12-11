@@ -194,7 +194,7 @@ public class CommandLineMain implements Runnable
      */
     RSAPublicKey readRSAPublicKeyFromPEM(final String pemEncodedRSAPublicKey) throws NoSuchAlgorithmException, InvalidKeySpecException
         {
-        String publicKeyPEM = pemEncodedRSAPublicKey.replace("-----BEGIN PUBLIC KEY-----", "").replaceAll(System.lineSeparator(), "").replace("-----END PUBLIC KEY-----", "");
+        String publicKeyPEM = pemEncodedRSAPublicKey.replace("-----BEGIN PUBLIC KEY-----\n", "").replaceAll(System.lineSeparator(), "").replace("-----END PUBLIC KEY-----\n", "");
         byte[] encoded = Base64.getDecoder().decode(publicKeyPEM);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(encoded);
@@ -212,7 +212,7 @@ public class CommandLineMain implements Runnable
      */
     RSAPrivateKey readRSAPrivateKeyFromPKCS8PEM(final String pkcs8encodedRSAPrivateKey) throws NoSuchAlgorithmException, InvalidKeySpecException
         {
-        String privateKeyPEM = pkcs8encodedRSAPrivateKey.replace("-----BEGIN PRIVATE KEY-----", "").replaceAll(System.lineSeparator(), "").replace("-----END PRIVATE KEY-----", "");
+        String privateKeyPEM = pkcs8encodedRSAPrivateKey.replace("-----BEGIN PRIVATE KEY-----\n", "").replaceAll(System.lineSeparator(), "").replace("-----END PRIVATE KEY-----\n", "");
         byte[] encoded = Base64.getDecoder().decode(privateKeyPEM);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encoded);

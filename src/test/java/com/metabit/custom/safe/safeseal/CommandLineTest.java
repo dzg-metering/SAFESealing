@@ -127,9 +127,9 @@ class CommandLineMainTest
     private static RSAPublicKey readPublicKey(final String readbackKey) throws NoSuchAlgorithmException, InvalidKeySpecException
         {
         String publicKeyPEM = readbackKey
-                .replace("-----BEGIN PUBLIC KEY-----", "")
+                .replace("-----BEGIN PUBLIC KEY-----\n", "")
                 .replaceAll(System.lineSeparator(), "")
-                .replace("-----END PUBLIC KEY-----", "");
+                .replace("-----END PUBLIC KEY-----\n", "");
         byte[] encoded = Base64.getDecoder().decode(publicKeyPEM);
 
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
@@ -140,9 +140,9 @@ class CommandLineMainTest
     private static RSAPrivateKey readPrivateKey(final String readbackKey) throws NoSuchAlgorithmException, InvalidKeySpecException
         {
         String privateKeyPEM = readbackKey
-                .replace("-----BEGIN PRIVATE KEY-----", "")
+                .replace("-----BEGIN PRIVATE KEY-----\n", "")
                 .replaceAll(System.lineSeparator(), "")
-                .replace("-----END PRIVATE KEY-----", "");
+                .replace("-----END PRIVATE KEY-----\n", "");
         byte[] encoded = Base64.getDecoder().decode(privateKeyPEM);
 
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
